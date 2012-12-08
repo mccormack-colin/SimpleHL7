@@ -9,7 +9,7 @@ import java.util.Iterator;
  * @author mccormack-colin
  *
  */
-public class Message {
+public class HL7Message {
 
 	private ArrayList<String> segments;
 
@@ -24,7 +24,7 @@ public class Message {
 	 * <p>
 	 * @param segments <code>ArrayList</code> of segments that form a HL7 message
 	 */
-	public Message(ArrayList<String> segments) {
+	public HL7Message(ArrayList<String> segments) {
 		this.segments = segments;
 	}
 
