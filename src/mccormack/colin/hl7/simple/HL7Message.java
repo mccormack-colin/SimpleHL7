@@ -1,6 +1,7 @@
 package mccormack.colin.hl7.simple;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 
 /**
@@ -26,6 +27,19 @@ public class HL7Message {
 	 */
 	public HL7Message(ArrayList<String> segments) {
 		this.segments = segments;
+	}
+	
+	/**
+	 * Creates an instance of the <code>Message</code> from an String.
+	 * Segment separator is \r
+	 * <p>
+	 * @param segments <code>String</code> form a HL7 message
+	 */
+	public HL7Message(String message) {
+		if (message != null) {
+			String[] segments = message.split("\r");
+			this.segments = new ArrayList<String>(Arrays.asList(segments));			
+		}
 	}
 
 	private boolean isSegment(String segment, String segmentName) {

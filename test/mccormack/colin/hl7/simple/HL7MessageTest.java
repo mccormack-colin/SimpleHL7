@@ -58,6 +58,32 @@ public class HL7MessageTest {
 	public void tearDown() throws Exception {
 		segments = null;
 	}
+	
+	@Test 
+	public void testHL7Messasge() {
+		HL7Message msg1 = new HL7Message(segments);
+		
+		StringBuffer msgAsString = new StringBuffer("");
+		msgAsString.append(SEGMENT_MSH).append(SEGMENT_SEPARATOR);
+		msgAsString.append(SEGMENT_PID).append(SEGMENT_SEPARATOR);
+		msgAsString.append(SEGMENT_PV1).append(SEGMENT_SEPARATOR);
+		msgAsString.append(SEGMENT_AL1_1).append(SEGMENT_SEPARATOR);
+		msgAsString.append(SEGMENT_AL1_2);
+		HL7Message msg2 = new HL7Message(msgAsString.toString());
+		
+		assertEquals(msg1.getMessage(), msg2.getMessage());
+		
+		assertEquals(msg1.getSegmentCount(MSH), msg2.getSegmentCount(MSH));
+		assertEquals(msg1.getSegmentCount(PID), msg2.getSegmentCount(PID));
+		assertEquals(msg1.getSegmentCount(PV1), msg2.getSegmentCount(PV1));
+		assertEquals(msg1.getSegmentCount(AL1), msg2.getSegmentCount(AL1));
+		
+		assertEquals(msg1.whichSegment(MSH, 1), msg1.whichSegment(MSH, 1));
+		assertEquals(msg1.whichSegment(PID, 1), msg1.whichSegment(PID, 1));
+		assertEquals(msg1.whichSegment(PV1, 1), msg1.whichSegment(PV1, 1));
+		assertEquals(msg1.whichSegment(AL1, 1), msg1.whichSegment(AL1, 1));
+		assertEquals(msg1.whichSegment(AL1, 2), msg1.whichSegment(AL1, 2));
+	}
 
 	@Test
 	public void testWhichSegment() {
